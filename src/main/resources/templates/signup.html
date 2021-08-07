@@ -3,22 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign up</title>
+    <link rel="stylesheet" th:href="@{/homePage.css}">
+    <link rel="stylesheet" th:href="@{/signUp.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
 </head>
+
 <body>
+<header >
+    <div th:replace="fragments/header :: header"></div>
+</header>
 <form th:action="@{/signup}" method="post">
     <label>Enter your first name: </label><br/>
-    <input type="text" name="firstName"/><br/><br/>
+    <input type="text" name="firstName" th:required="required"/><br/><br/>
     <label>Enter your last name: </label><br/>
-    <input type="text" name="lastName"/><br/><br/>
-    <label>Enter your user name: </label><br/>
-    <input type="text" name="userName"/><br/><br/>
+    <input type="text" name="lastName" th:required="required"/><br/><br/>
     <label>Enter your date of birth: </label><br/>
-    <input type="date" name="dateOfBirth"/><br/><br/>
-    <label>Enter your bio: </label><br/>
-    <input type="text" name="bio"/><br/><br/>
+    <input type="date" name = "dateOfBirth" th:required="required"/><br/><br/>
+    <label>Enter your username: </label><br/>
+    <input type="text" name="userName" th:required="required"/><br/><br/>
     <label>Enter your password: </label><br/>
-    <input type="password" name="password"/><br/><br/>
-    <input type="submit">
+    <input type="password" name="password" th:required="required"/><br/><br/>
+    <label>Enter your bio: </label><br/>
+    <input type="text" name="bio" th:required="required"/><br/><br/>
+    <input type="submit" value="Sign Up" style="border-radius: 8%;border-color: #DA0037;font-size: larger;height: 47px; font-family: 'Roboto Mono', monospace;">
 </form>
 </body>
 </html>

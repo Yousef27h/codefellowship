@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <link rel="stylesheet" th:href="@{/homePage.css}">
+    <link rel="stylesheet" th:href="@{/posts.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header >
+    <div th:replace="fragments/header :: header"></div>
+</header>
+<form th:action="@{/posts}" method="post" style="float: left; width: 29%">
+  <label>Type a new post: </label><br/>
+    <textarea name="post" cols="50" rows="10"></textarea><br/><br/>
+  <input type="submit" style="border-radius: 8%;border-color: #DA0037;font-size: larger;height: 47px; font-family: 'Roboto Mono', monospace;">
+</form>
+<ul th:each="post : ${posts}" style="float: left; width: 49%">
+    <li th:text="'Post: '+${post.getBody()}"></li>
+    <li th:text="'Created at: '+${post.getCreatedAt()}"></li>
+</ul>
+</body>
+</html>

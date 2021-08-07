@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Discover</title>
+</head>
+<body>
+<!--<ul th:each="user : ${allUsers}">-->
+<!--    <li>-->
+<!--        <h1 th:text="${user.getFirstName()}"></h1>-->
+<!--        <h1 th:text="${user.getLastName()}"></h1>-->
+<!--    </li>-->
+<!--</ul>-->
+
+<div class="flex-container">
+    <div class="user" th:each="user:${allUsers}">
+        <div>
+            <h1 th:text="${user.getFirstName()}+' '+${user.getLastName()}"></h1>
+            <a th:href="@{/discover/{id}(id= ${user.getId()})}">View Profile </a>
+        </div>
+        <div>
+            <span th:unless="${followings.contains(user)}">
+            <form th:action="@{/follow}" method="post">
+                <input th:value="${user.getId()}" th:name="userId" th:type="hidden"/>
+                <input type="submit" th:value="Follow"/>
+            </form>
+            </span>
+            <span th:if="${followings.contains(user)}">
+            <form th:action="@{/unfollow}" method="post">
+                <input th:value="${user.getId()}" th:name="userId" th:type="hidden"/>
+                <input type="submit" th:value="Unfollow"/>
+            </form>
+            </span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

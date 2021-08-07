@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign In</title>
+    <link rel="stylesheet" th:href="@{/homePage.css}">
+    <link rel="stylesheet" th:href="@{/signUp.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-<fieldset>
-    <legend>Sign in
-    <form th:action="@{/login}" method="post">
-    <label>Enter your user name: <br/>
-  <input type="text" name="username"/>
+<header>
+    <div th:replace="fragments/header :: header"></div>
+</header>
+
+<form th:action="@{/login}" method="post">
+    <label>Enter your username: <br/>
+        <input type="text" name="username" th:required="required"/>
     </label><br/><br/>
-  <label>Enter your password: <br/>
-  <input type="password" name="password"/>
-  </label><br/><br/>
-  <input type="submit" value="Sign In">
-    </form>
-    </legend>
-</fieldset>
+    <label>Enter your password: <br/>
+        <input type="password" name="password" th:required="required"/>
+    </label><br/><br/>
+    <input type="submit" value="Sign In" style="border-radius: 8%;border-color: #DA0037;font-size: larger;height: 47px; font-family: 'Roboto Mono', monospace;">
+</form>
 </body>
 </html>

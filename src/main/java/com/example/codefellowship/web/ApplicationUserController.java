@@ -29,14 +29,27 @@ public class ApplicationUserController {
     @Autowired
     BCryptPasswordEncoder encoder;
 
+    /**
+     * Register a new user
+     * @return signup html form
+     */
     @GetMapping("/signup")
     public String getSignUpPage(){
         return "signup";
     }
 
+    /**
+     * get a form to login
+     * @return login form page
+     */
     @GetMapping("/login")
     public String getSignInPage(){ return "login"; }
 
+    /**
+     * display principal profile page
+     * @param model
+     * @return profile page with basic information about principal user
+     */
     @GetMapping("/profile")
     public String getTestPage(Model model){
 
@@ -50,7 +63,18 @@ public class ApplicationUserController {
         return "profile";
     }
 
-
+    /**
+     * Create new user in database and sign in the new user after signing up
+     * @param userName
+     * @param firstName
+     * @param lastName
+     * @param dateOfBirth
+     * @param bio
+     * @param password
+     * @param user
+     * @return redirect to home page
+     * @throws ParseException
+     */
     @PostMapping("/signup")
     RedirectView submitSignUpForm(String userName, String firstName, String lastName, String dateOfBirth, String bio, String password, @ModelAttribute("user") User user) throws ParseException {
 
@@ -62,7 +86,12 @@ public class ApplicationUserController {
         return new RedirectView("/");
     }
 
-
+    /**
+     * Get all users in database
+     * @param model
+     * @param principal
+     * @return a page to render all user that were retrieved
+     */
     @GetMapping("/discover")
     public String getUsers(Model model, Principal principal){
         List<ApplicationUser> allUsers = applicationUserServiceImp.getAllUsers();
@@ -74,6 +103,11 @@ public class ApplicationUserController {
         return "discover";
     }
 
+    /**
+     * Add new followers to principal user's following list
+     * @param userId
+     * @return redirect to discover page
+     */
     @PostMapping("/follow")
     public RedirectView addFollowing(@RequestParam Long userId){
         ApplicationUser principal = (ApplicationUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -86,6 +120,11 @@ public class ApplicationUserController {
         return new RedirectView("/discover");
     }
 
+    /**
+     * remove a follower from principal user's following list
+     * @param userId
+     * @return discover page
+     */
     @PostMapping("/unfollow")
     public RedirectView removeFollowing(@RequestParam Long userId){
         ApplicationUser principal = (ApplicationUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -96,12 +135,4 @@ public class ApplicationUserController {
         return new RedirectView("/discover");
     }
 
-//    @GetMapping("/discover/{userId}")
-//    public String getUser(@PathVariable Long userId, Model model){
-//        ApplicationUser user = applicationUserServiceImp.getUserById(userId);
-//        ApplicationUser principal = (ApplicationUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        principal.ge
-//        model.addAttribute("user", user);
-//        return "userProfile";
-//    }
 }

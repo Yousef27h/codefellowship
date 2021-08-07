@@ -23,7 +23,11 @@ public class PostController {
     @Autowired
     ApplicationUserServiceImp applicationUserServiceImp;
 
-    // Add posts
+    /**
+     * Add a post
+     * @param post
+     * @return redirect to posts page
+     */
     @PostMapping("/posts")
     RedirectView addPost(@RequestParam String post){
 
@@ -33,6 +37,11 @@ public class PostController {
         return new RedirectView("/posts");
     }
 
+    /**
+     * display all posts
+     * @param model
+     * @return html page to render posts
+     */
     @GetMapping("/posts")
     public String getPostForm(Model model){
 

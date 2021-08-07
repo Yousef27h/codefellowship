@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/homePage.css}">
+    <link rel="stylesheet" th:href="@{/profilePage.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header >
+    <div th:replace="fragments/header :: header"></div>
+</header>
+<main>
+    <div>
+        <img src="https://www.personality-insights.com/wp-content/uploads/2017/12/default-profile-pic-e1513291410505.jpg"/>
+        <h4 th:text="'Bio: '+${bio}"></h4>
+        <h4 th:text="'Name: '+${firstName}+' '+ ${lastName}"></h4>
+        <h4 th:text="'Date of birth: '+${dateOfBirth}"></h4>
+        <h4 th:if="${posts.isEmpty()}">No Posts</h4>
+        <h4 th:unless="${posts.isEmpty()}">Posts: </h4>
+        <ol >
+            <li th:each="post:${posts}" th:text="${post.getBody()}" ></li>
+        </ol>
+
+    </div>
+</main>
+</body>
+</html>

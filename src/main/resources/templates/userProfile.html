@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+</head>
+<body>
+<h1 th:text="'Name: '+${user.getFirstName()}+' '+${user.getLastName()}"></h1>
+<h2 th:text="'Date of Birth: '+${user.getDateOfBirth()}"></h2>
+<h2 th:text="'Bio: '+${user.getBio()}"></h2>
+<h2 >Posts: </h2>
+<h3 th:if="${user.getPosts().isEmpty()}">No Posts</h3>
+<h3 th:unless="${user.getPosts().isEmpty()}">Posts: </h3>
+<ol >
+    <li th:each="post:${user.getPosts()}" th:text="${post.getBody()}" ></li>
+</ol>
+</ul>
+</body>
+</html>

@@ -1,0 +1,16 @@
+label{
+    font-family: 'Roboto Mono', monospace;
+    color: #a21010;
+    font-size: larger;
+}
+
+body > form{
+    width: 18%;
+    margin: 4% auto auto;
+    border-style: solid;
+    padding: 2%;
+    border-radius: 5%;
+    border-color: white;
+    background-color: #ffffff87;
+    text-align: center;
+}

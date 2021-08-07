@@ -1,0 +1,19 @@
+body > main > div{
+    width: 40%;
+    margin: 4% auto auto;
+    border-style: solid;
+    padding: 2%;
+    border-radius: 5%;
+    border-color: white;
+    background-color: #ffffffc2;
+    text-align: center;
+}
+
+h4{
+    text-align: center;
+    color: #DA0037;
+    margin-left: 6%;
+    margin-right: 6%;
+    font-family: 'Roboto Mono', monospace;
+    font-size: large;
+}

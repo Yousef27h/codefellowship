@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+</head>
+<body>
+<div th:fragment="header" xmlns:th="http://www.springframework.org/schema/security">
+    <a href="/" style="text-decoration: none; width: fit-content;"><h1>CodeFellowship</h1></a>
+    <div sec:authorize="!isAuthenticated()">
+        <ul>
+            <li><a href="/login">Log In</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/signup">Sign up</a></li>
+        </ul>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <ul>
+            <li style="margin: 0;padding: 1%;round-color: black;color: #DA0037;font-size: larger;font-family: 'Roboto Mono', monospace;">
+                Hello, <span sec:authentication="name"></span>
+            </li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/posts">Post</a></li>
+            <li><a href="/discover">Discover People</a></li>
+            <li>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out"
+                           style="border-color: #DA0037;padding: 20%;margin-top: 3%;background-color: #333;border-style: outset;color: #DA0037;font-size: large;margin-left: 129%;"/>
+                </form>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
